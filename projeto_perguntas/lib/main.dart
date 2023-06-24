@@ -1,14 +1,25 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 
 main() => runApp(const PerguntaApp());
 
-class PerguntaApp extends StatelessWidget {
+class PerguntaApp extends StatefulWidget {
   const PerguntaApp({super.key});
 
-  final perguntaSelecionada = 0;
+  @override
+  State<StatefulWidget> createState() {
+    return PerguntaAppState();
+  }
+}
+
+class PerguntaAppState extends State<PerguntaApp> {
+  var perguntaSelecionada = 0;
 
   void responder() {
-    perguntaSelecionada++;
+    setState(() {
+      perguntaSelecionada++;
+    });
   }
 
   @override
