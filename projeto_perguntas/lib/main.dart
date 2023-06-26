@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import './questao.dart';
 import './resposta.dart';
 
-//O Imperativo tem o foco no COMO, em
-//explicar como deve ser feito,
-//já o Declarativo ele foca no O QUE
-//precisa ser feito, o 'como' ele deixa
-//para linguagem resolver.
-//O Imperativo tem uma maior quantidade de código,
+//O Imperativo tem o foco no COMO, em explicar como deve ser feito,
+//já o Declarativo ele foca no O QUE precisa ser feito, o 'como' ele deixa
+//para linguagem resolver. O Imperativo tem uma maior quantidade de código,
 //pois você precisa explicar exatamente o fluxo de funcionamento,
 //no Declarativo há uma menor quantidade.
 
@@ -48,11 +45,19 @@ class _PerguntaAppState extends State<PerguntaApp> {
       }
     ];
 
+    /*Forma Imperativa (Como fazer)
     List<Widget> respostas = [];
     for (String textoResp
         in perguntas[_perguntaSelecionada]['respostas'] as List) {
       respostas.add(Resposta(textoResp, _responder));
-    }
+    }*/
+
+    //Forma Declarativa (O que fazer)
+    List<String> respostas =
+        perguntas[_perguntaSelecionada]['respostas'] as List<String>;
+    List<Widget> widgetsRespostas =
+        respostas.map((t) => Resposta(t, _responder)).toList();
+    //
 
     return MaterialApp(
       home: Scaffold(
@@ -65,7 +70,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
           children: <Widget>[
             Questao(
                 perguntas.elementAt(_perguntaSelecionada)['texto'] as String),
-            ...respostas,
+            ...widgetsRespostas,
           ],
         ),
       ),
