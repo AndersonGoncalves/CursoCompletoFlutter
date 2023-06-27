@@ -45,6 +45,12 @@ class _PerguntaAppState extends State<PerguntaApp> {
     }
   }
 
+  void _reiniciar() {
+    setState(() {
+      _perguntaSelecionada = 0;
+    });
+  }
+
   bool get temPerguntaSelecionada {
     return _perguntaSelecionada < _perguntas.length;
   }
@@ -57,21 +63,29 @@ class _PerguntaAppState extends State<PerguntaApp> {
 
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'Perguntas',
+          appBar: AppBar(
+            title: const Text(
+              'Perguntas',
+            ),
           ),
-        ),
-        body: temPerguntaSelecionada
-            ? Column(
-                children: <Widget>[
-                  Questao(_perguntas.elementAt(_perguntaSelecionada)['texto']
-                      as String),
-                  ...respostas.map((t) => Resposta(t, _responder)).toList(),
-                ],
-              )
-            : null,
-      ),
+          body: temPerguntaSelecionada
+              ? Column(
+                  children: <Widget>[
+                    Questao(_perguntas.elementAt(_perguntaSelecionada)['texto']
+                        as String),
+                    ...respostas.map((t) => Resposta(t, _responder)).toList(),
+                  ],
+                )
+              : Center(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      foregroundColor: Colors.white,
+                    ),
+                    onPressed: _reiniciar,
+                    child: const Text('Reiniciar'),
+                  ),
+                )),
     );
   }
 }
