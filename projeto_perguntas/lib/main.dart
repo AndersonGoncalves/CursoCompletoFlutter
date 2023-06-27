@@ -22,42 +22,38 @@ class PerguntaApp extends StatefulWidget {
 class _PerguntaAppState extends State<PerguntaApp> {
   var _perguntaSelecionada = 0;
 
+  final List<Map<String, Object>> _perguntas = const [
+    {
+      'texto': 'Qual é a sua cor favorita?',
+      'respostas': ['Preto', 'Vermelho', 'Verde', 'Branco']
+    },
+    {
+      'texto': 'Qual é o seu animal favorito?',
+      'respostas': ['Coelho', 'Cobra', 'Elefante', 'Leão']
+    },
+    {
+      'texto': 'Qual é o seu carro favorito?',
+      'respostas': ['Gol', 'Polo', 'Nivus', 'T-Cross']
+    }
+  ];
+
   void _responder() {
-    setState(() {
-      _perguntaSelecionada++;
-    });
+    if (temPerguntaSelecionada) {
+      setState(() {
+        _perguntaSelecionada++;
+      });
+    }
+  }
+
+  bool get temPerguntaSelecionada {
+    return _perguntaSelecionada < _perguntas.length;
   }
 
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, Object>> perguntas = [
-      {
-        'texto': 'Qual é a sua cor favorita?',
-        'respostas': ['Preto', 'Vermelho', 'Verde', 'Branco']
-      },
-      {
-        'texto': 'Qual é o seu animal favorito?',
-        'respostas': ['Coelho', 'Cobra', 'Elefante', 'Leão']
-      },
-      {
-        'texto': 'Qual é o seu carro favorito?',
-        'respostas': ['Gol', 'Polo', 'Nivus', 'T-Cross']
-      }
-    ];
-
-    /*Forma Imperativa (Como fazer)
-    List<Widget> respostas = [];
-    for (String textoResp
-        in perguntas[_perguntaSelecionada]['respostas'] as List) {
-      respostas.add(Resposta(textoResp, _responder));
-    }*/
-
-    //Forma Declarativa (O que fazer)
-    List<String> respostas =
-        perguntas[_perguntaSelecionada]['respostas'] as List<String>;
-    List<Widget> widgetsRespostas =
-        respostas.map((t) => Resposta(t, _responder)).toList();
-    //
+    var respostas = temPerguntaSelecionada
+        ? _perguntas[_perguntaSelecionada]['respostas'] as List<String>
+        : [];
 
     return MaterialApp(
       home: Scaffold(
@@ -66,13 +62,15 @@ class _PerguntaAppState extends State<PerguntaApp> {
             'Perguntas',
           ),
         ),
-        body: Column(
-          children: <Widget>[
-            Questao(
-                perguntas.elementAt(_perguntaSelecionada)['texto'] as String),
-            ...widgetsRespostas,
-          ],
-        ),
+        body: temPerguntaSelecionada
+            ? Column(
+                children: <Widget>[
+                  Questao(_perguntas.elementAt(_perguntaSelecionada)['texto']
+                      as String),
+                  ...respostas.map((t) => Resposta(t, _responder)).toList(),
+                ],
+              )
+            : null,
       ),
     );
   }
