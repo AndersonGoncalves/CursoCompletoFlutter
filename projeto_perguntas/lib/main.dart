@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import './questao.dart';
-import './resposta.dart';
 import './resultado.dart';
+import './questionario.dart';
 
 //O Imperativo tem o foco no COMO, em explicar como deve ser feito,
 //já o Declarativo ele foca no O QUE precisa ser feito, o 'como' ele deixa
@@ -58,10 +57,6 @@ class _PerguntaAppState extends State<PerguntaApp> {
 
   @override
   Widget build(BuildContext context) {
-    var respostas = temPerguntaSelecionada
-        ? _perguntas[_perguntaSelecionada]['respostas'] as List<String>
-        : [];
-
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -70,12 +65,10 @@ class _PerguntaAppState extends State<PerguntaApp> {
           ),
         ),
         body: temPerguntaSelecionada
-            ? Column(
-                children: <Widget>[
-                  Questao(_perguntas.elementAt(_perguntaSelecionada)['texto']
-                      as String),
-                  ...respostas.map((t) => Resposta(t, _responder)).toList(),
-                ],
+            ? Questionario(
+                perguntaSelecionada: _perguntaSelecionada,
+                perguntas: _perguntas,
+                responder: _responder,
               )
             : Resultado(_reiniciar),
       ),
