@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './questao.dart';
 import './resposta.dart';
+import './resultado.dart';
 
 //O Imperativo tem o foco no COMO, em explicar como deve ser feito,
 //já o Declarativo ele foca no O QUE precisa ser feito, o 'como' ele deixa
@@ -63,29 +64,21 @@ class _PerguntaAppState extends State<PerguntaApp> {
 
     return MaterialApp(
       home: Scaffold(
-          appBar: AppBar(
-            title: const Text(
-              'Perguntas',
-            ),
+        appBar: AppBar(
+          title: const Text(
+            'Perguntas',
           ),
-          body: temPerguntaSelecionada
-              ? Column(
-                  children: <Widget>[
-                    Questao(_perguntas.elementAt(_perguntaSelecionada)['texto']
-                        as String),
-                    ...respostas.map((t) => Resposta(t, _responder)).toList(),
-                  ],
-                )
-              : Center(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      foregroundColor: Colors.white,
-                    ),
-                    onPressed: _reiniciar,
-                    child: const Text('Reiniciar'),
-                  ),
-                )),
+        ),
+        body: temPerguntaSelecionada
+            ? Column(
+                children: <Widget>[
+                  Questao(_perguntas.elementAt(_perguntaSelecionada)['texto']
+                      as String),
+                  ...respostas.map((t) => Resposta(t, _responder)).toList(),
+                ],
+              )
+            : Resultado(_reiniciar),
+      ),
     );
   }
 }
