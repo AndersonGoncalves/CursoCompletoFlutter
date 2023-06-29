@@ -20,23 +20,27 @@ class Resultado extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-          Text(
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Center(
+          child: Text(
             fraseResultado,
-            style: const TextStyle(fontSize: 20),
-          ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue,
-              foregroundColor: Colors.white,
+            style: const TextStyle(
+              fontSize: 28,
             ),
-            onPressed: reiniciar,
-            child: const Text('Reiniciar'),
           ),
-        ],
-      ),
+        ),
+        TextButton(
+          onPressed: reiniciar,
+          child: const Text(
+            'Reiniciar?',
+            style: TextStyle(
+              fontSize: 18,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
