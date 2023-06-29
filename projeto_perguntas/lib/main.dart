@@ -88,7 +88,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
                 perguntas: _perguntas,
                 responder: _responder,
               )
-            : Resultado(_reiniciar),
+            : Resultado(_reiniciar, _pontuacaoTotal),
       ),
     );
   }
