@@ -21,41 +21,43 @@ class PerguntaApp extends StatefulWidget {
 
 class _PerguntaAppState extends State<PerguntaApp> {
   var _perguntaSelecionada = 0;
+  var _pontuacaoTotal = 0;
 
   final List<Map<String, Object>> _perguntas = const [
     {
       'texto': 'Qual é a sua cor favorita?',
       'respostas': [
-        {'texto': 'Preto', 'nota': 10},
-        {'texto': 'Vermelho', 'nota': 9},
-        {'texto': 'Verde', 'nota': 7},
-        {'texto': 'Branco', 'nota': 8},
+        {'texto': 'Preto', 'pontuacao': 10},
+        {'texto': 'Vermelho', 'pontuacao': 9},
+        {'texto': 'Verde', 'pontuacao': 7},
+        {'texto': 'Branco', 'pontuacao': 8},
       ]
     },
     {
       'texto': 'Qual é o seu animal favorito?',
       'respostas': [
-        {'texto': 'Coelho', 'nota': 7},
-        {'texto': 'Cobra', 'nota': 1},
-        {'texto': 'Elefante', 'nota': 8},
-        {'texto': 'Leão', 'nota': 10},
+        {'texto': 'Coelho', 'pontuacao': 7},
+        {'texto': 'Cobra', 'pontuacao': 1},
+        {'texto': 'Elefante', 'pontuacao': 8},
+        {'texto': 'Leão', 'pontuacao': 10},
       ]
     },
     {
       'texto': 'Qual é o seu carro favorito?',
       'respostas': [
-        {'texto': 'Gol', 'nota': 5},
-        {'texto': 'Polo', 'nota': 9},
-        {'texto': 'Nivus', 'nota': 10},
-        {'texto': 'T-Cross', 'nota': 10},
+        {'texto': 'Gol', 'pontuacao': 5},
+        {'texto': 'Polo', 'pontuacao': 9},
+        {'texto': 'Nivus', 'pontuacao': 10},
+        {'texto': 'T-Cross', 'pontuacao': 10},
       ]
     }
   ];
 
-  void _responder() {
+  void _responder(int pontuacao) {
     if (temPerguntaSelecionada) {
       setState(() {
         _perguntaSelecionada++;
+        _pontuacaoTotal += pontuacao;
       });
     }
   }
@@ -63,6 +65,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
   void _reiniciar() {
     setState(() {
       _perguntaSelecionada = 0;
+      _pontuacaoTotal = 0;
     });
   }
 
