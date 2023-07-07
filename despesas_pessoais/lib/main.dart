@@ -105,11 +105,31 @@ class MyHomePage extends StatelessWidget {
                   const TextField(
                     decoration: InputDecoration(
                       labelText: 'Título',
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.grey,
+                        ),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.purple,
+                        ),
+                      ),
                     ),
                   ),
                   const TextField(
                     decoration: InputDecoration(
                       labelText: 'Valor (R\$)',
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.grey,
+                        ),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.purple,
+                        ),
+                      ),
                     ),
                   ),
                   Row(
