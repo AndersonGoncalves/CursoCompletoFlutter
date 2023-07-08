@@ -16,6 +16,9 @@ class ExpensesApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
 
+  final titleController = TextEditingController();
+  final valueController = TextEditingController();
+
   final _transactions = [
     Transaction(
       id: 't1',
@@ -102,8 +105,10 @@ class MyHomePage extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               child: Column(
                 children: <Widget>[
-                  const TextField(
-                    decoration: InputDecoration(
+                  TextField(
+                    controller:
+                        titleController, //onChanged: (newTitle) => titleController.text = newTitle,
+                    decoration: const InputDecoration(
                       labelText: 'Título',
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
@@ -112,13 +117,15 @@ class MyHomePage extends StatelessWidget {
                       ),
                       focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
-                          color: Colors.purple,
+                          color: Colors.blue,
                         ),
                       ),
                     ),
                   ),
-                  const TextField(
-                    decoration: InputDecoration(
+                  TextField(
+                    controller:
+                        valueController, //onChanged: (newValue) => valueController.text = newValue,
+                    decoration: const InputDecoration(
                       labelText: 'Valor (R\$)',
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
@@ -127,7 +134,7 @@ class MyHomePage extends StatelessWidget {
                       ),
                       focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
-                          color: Colors.purple,
+                          color: Colors.blue,
                         ),
                       ),
                     ),
@@ -141,10 +148,13 @@ class MyHomePage extends StatelessWidget {
                           child: const Text(
                             'Nova transação',
                             style: TextStyle(
-                              color: Colors.purple,
+                              color: Colors.blue,
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            print(titleController.text);
+                            print(valueController.text);
+                          },
                         ),
                       ),
                     ],
