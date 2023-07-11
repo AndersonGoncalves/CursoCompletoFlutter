@@ -50,7 +50,7 @@ class TransactionList extends StatelessWidget {
                       tr.title,
                       style: Theme.of(context)
                           .textTheme
-                          .headline6, //Pegar o thema do textTheme
+                          .titleLarge, //Pegar o thema do textTheme, headline6 foi deprecado, usar titleLarge
                       //style: const TextStyle(
                       //  fontSize: 16,
                       //  fontWeight: FontWeight.bold,
