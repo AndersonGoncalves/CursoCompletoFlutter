@@ -24,7 +24,6 @@ class ExpensesApp extends StatelessWidget {
         ),
         textTheme: tema.textTheme.copyWith(
           titleLarge: const TextStyle(
-            //headline6 foi deprecado, usar titleLarge
             fontFamily: 'OpenSans',
             fontSize: 18,
             fontWeight: FontWeight.bold,

@@ -48,7 +48,7 @@ class Chart extends StatelessWidget {
             weekDay)[0], //DateFormat.E(): retorna a sigla do dia da semana
         'value': totalSum,
       };
-    });
+    }).reversed.toList();
   }
 
   const Chart(this.recentTransactions, {super.key});

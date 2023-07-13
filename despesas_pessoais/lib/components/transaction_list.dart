@@ -38,6 +38,38 @@ class TransactionList extends StatelessWidget {
               itemBuilder: (ctx, index) {
                 final tr = transactions[index];
                 return Card(
+                  elevation: 5,
+                  margin: const EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 5,
+                  ),
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      radius: 30,
+                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      child: Padding(
+                        padding: const EdgeInsets.all(7),
+                        child: FittedBox(
+                          child: Text(
+                            'R\$${tr.value}',
+                            style: const TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    title: Text(
+                      tr.title,
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                    subtitle: Text(
+                      DateFormat('dd MMM y').format(tr.date),
+                    ),
+                  ),
+                );
+                /*Trocado pelo Widget ListTile
+                Card(
                   child: Row(
                     children: <Widget>[
                       Container(
@@ -88,7 +120,7 @@ class TransactionList extends StatelessWidget {
                       )
                     ],
                   ),
-                );
+                );*/
               },
             ),
     );
