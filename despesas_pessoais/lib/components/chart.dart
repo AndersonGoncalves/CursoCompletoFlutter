@@ -1,6 +1,3 @@
-import 'dart:js_interop';
-import 'dart:math';
-
 import 'package:despesas_pessoais/components/chart_bar.dart';
 import 'package:despesas_pessoais/models/transaction.dart';
 import 'package:flutter/material.dart';
@@ -38,15 +35,13 @@ class Chart extends StatelessWidget {
       }*/
 
       //WHERE, MAP e FOLD
-      List<double> lista = recentTransactions
+      totalSum = recentTransactions
           .where((e) =>
               (e.date.day == weekDay.day) &&
               (e.date.month == weekDay.month) &&
               (e.date.year == weekDay.year))
           .map((tr) => tr.value)
-          .toList();
-      totalSum = lista.fold(0.0, (t, a) => t + a);
-      //Para utilizar o reduce, precisaria do ternário: totalSum = lista.isEmpty ? 0.00 : lista.reduce((t, a) => t + a);
+          .fold(0.0, (t, a) => t + a);
 
       return {
         'day': DateFormat.E().format(
