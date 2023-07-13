@@ -37,7 +37,7 @@ class Chart extends StatelessWidget {
         }
       }*/
 
-      //WHERE, MAP e REDUCE
+      //WHERE, MAP e FOLD
       List<double> lista = recentTransactions
           .where((e) =>
               (e.date.day == weekDay.day) &&
@@ -45,12 +45,8 @@ class Chart extends StatelessWidget {
               (e.date.year == weekDay.year))
           .map((tr) => tr.value)
           .toList();
-
-      totalSum = lista.isEmpty ? 0.00 : lista.reduce((t, a) => t + a);
-
-      //print(lista);
-      //print(DateFormat.E().format(weekDay)[0]);
-      //print(totalSum);
+      totalSum = lista.fold(0.0, (t, a) => t + a);
+      //Para utilizar o reduce, precisaria do ternário: totalSum = lista.isEmpty ? 0.00 : lista.reduce((t, a) => t + a);
 
       return {
         'day': DateFormat.E().format(
@@ -83,8 +79,10 @@ class Chart extends StatelessWidget {
               fit: FlexFit.tight,
               child: ChartBar(
                 label: tr['day'].toString(),
-                value: double.parse(tr['value'].toString()),
-                percentage: (tr['value'] as double) / _weekTotalValue,
+                value: (tr['value'] as double),
+                percentage: (_weekTotalValue == 0
+                    ? 0
+                    : (tr['value'] as double) / _weekTotalValue),
               ),
             );
           }).toList(),
