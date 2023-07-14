@@ -71,19 +71,37 @@ class _TransactionFormState extends State<TransactionForm> {
                 ),
               ),
             ),
+            SizedBox(
+              height: 70,
+              child: Row(
+                children: <Widget>[
+                  const Text('Nenhuma data selecionada!'),
+                  TextButton(
+                    child: const Text(
+                      'Selecionar Data',
+                      //style: Theme.of(context).textTheme.titleLarge,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                  child: TextButton(
+                  child: ElevatedButton(
                     onPressed: _submitForm,
-                    child: const Text(
-                      'Nova transação',
-                      style: TextStyle(
-                        color: Colors.blue,
-                      ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      foregroundColor:
+                          Theme.of(context).textTheme.labelLarge?.color,
                     ),
+                    child: const Text('Nova transação'),
                   ),
                 ),
               ],
