@@ -44,6 +44,27 @@ class TransactionList extends StatelessWidget {
                     horizontal: 5,
                   ),
                   child: ListTile(
+                    /*Substituindo o container por CircleAvatar
+                    leading: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                      height: 60,
+                      width: 60,
+                      child: Padding(
+                        padding: const EdgeInsets.all(7),
+                        child: FittedBox(
+                          child: Text(
+                            'R\$${tr.value}',
+                            style: const TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    */
                     leading: CircleAvatar(
                       radius: 30,
                       backgroundColor: Theme.of(context).colorScheme.primary,
