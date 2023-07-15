@@ -37,7 +37,8 @@ class ExpensesApp extends StatelessWidget {
         appBarTheme: const AppBarTheme(
           titleTextStyle: TextStyle(
             fontFamily: 'Quicksand',
-            fontSize: 20,
+            fontSize:
+                20, // * MediaQuery.of(context).textScaleFactor (Para aumentar o tamanho da fonte quando o usuário aumentar a fonte do aparelho)
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
@@ -150,11 +151,11 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             SizedBox(
-              height: availableHeight * 0.35,
+              height: availableHeight * 0.30,
               child: Chart(_recentTransactions),
             ),
             SizedBox(
-              height: availableHeight * 0.65,
+              height: availableHeight * 0.70,
               child: TransactionList(_transactions, _removeTransaction),
             ),
           ],
