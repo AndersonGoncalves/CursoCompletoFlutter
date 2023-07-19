@@ -34,11 +34,12 @@ class ExpensesApp extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        appBarTheme: const AppBarTheme(
+        appBarTheme: AppBarTheme(
           titleTextStyle: TextStyle(
             fontFamily: 'Quicksand',
-            fontSize:
-                20, // * MediaQuery.of(context).textScaleFactor (Para aumentar o tamanho da fonte quando o usuário aumentar a fonte do aparelho)
+            fontSize: 20 *
+                MediaQuery.of(context)
+                    .textScaleFactor, // * MediaQuery.of(context).textScaleFactor (Para aumentar o tamanho da fonte quando o usuário aumentar a fonte do aparelho)
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),

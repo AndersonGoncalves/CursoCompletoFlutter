@@ -56,16 +56,16 @@ class _TransactionFormState extends State<TransactionForm> {
               onSubmitted: (_) => _submitForm(),
               decoration: const InputDecoration(
                 labelText: 'Título',
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.grey,
-                  ),
-                ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.blue,
-                  ),
-                ),
+                //enabledBorder: UnderlineInputBorder(
+                //  borderSide: BorderSide(
+                //    color: Colors.grey,
+                //  ),
+                //),
+                //focusedBorder: UnderlineInputBorder(
+                //  borderSide: BorderSide(
+                //    color: Colors.blue,
+                //  ),
+                //),
               ),
             ),
             TextField(
@@ -76,16 +76,16 @@ class _TransactionFormState extends State<TransactionForm> {
               onSubmitted: (_) => _submitForm(),
               decoration: const InputDecoration(
                 labelText: 'Valor (R\$)',
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.grey,
-                  ),
-                ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.blue,
-                  ),
-                ),
+                //enabledBorder: UnderlineInputBorder(
+                //  borderSide: BorderSide(
+                //    color: Colors.grey,
+                //  ),
+                //),
+                //focusedBorder: UnderlineInputBorder(
+                //  borderSide: BorderSide(
+                //    color: Colors.blue,
+                //  ),
+                //),
               ),
             ),
             SizedBox(
