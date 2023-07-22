@@ -18,7 +18,7 @@ class TransactionList extends StatelessWidget {
                   height: constraints.maxHeight * 0.05,
                 ),
                 SizedBox(
-                  height: constraints.maxHeight * 0.3,
+                  height: 20,
                   child: Text(
                     'Nenhuma transação cadastrada',
                     style: Theme.of(context).textTheme.titleLarge,
