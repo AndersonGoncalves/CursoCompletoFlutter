@@ -152,6 +152,15 @@ class _MyHomePageState extends State<MyHomePage> {
     final appBar = AppBar(
       title: const Text('Despesas Pessoais'),
       actions: [
+        if (isLandScape)
+          IconButton(
+            onPressed: () {
+              setState(() {
+                _showChart = !_showChart;
+              });
+            },
+            icon: Icon(_showChart ? Icons.list : Icons.show_chart),
+          ),
         IconButton(
           onPressed: () => _openTransactionFormModal(context),
           icon: const Icon(Icons.add),
@@ -169,21 +178,22 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            if (isLandScape)
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const Text('Exibir gráfico'),
-                  Switch(
-                    value: _showChart,
-                    onChanged: (value) {
-                      setState(() {
-                        _showChart = value;
-                      });
-                    },
-                  ),
-                ],
-              ),
+            //Removendo o Swith, pois foi adicionado um botão no appBar
+            //if (isLandScape)
+            //  Row(
+            //    mainAxisAlignment: MainAxisAlignment.center,
+            //    children: <Widget>[
+            //      const Text('Exibir gráfico'),
+            //      Switch(
+            //       value: _showChart,
+            //        onChanged: (value) {
+            //          setState(() {
+            //            _showChart = value;
+            //          });
+            //        },
+            //      ),
+            //    ],
+            //  ),
             if (_showChart || !isLandScape)
               SizedBox(
                 height: availableHeight * (isLandScape ? 0.70 : 0.30),
