@@ -12,6 +12,9 @@ class ExpensesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //Permitir somente modo retrato
+    //SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
     final ThemeData tema = ThemeData();
 
     return MaterialApp(
@@ -58,6 +61,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  bool _showChart = false;
   final List<Transaction> _transactions = [
     Transaction(
       id: 't0',
@@ -88,6 +92,18 @@ class _MyHomePageState extends State<MyHomePage> {
       title: 'Conta #02',
       value: 22.45,
       date: DateTime.now().subtract(const Duration(days: 2)),
+    ),
+    Transaction(
+      id: 't5',
+      title: 'Conta #03',
+      value: 2.15,
+      date: DateTime.now().subtract(const Duration(days: 3)),
+    ),
+    Transaction(
+      id: 't5',
+      title: 'Conta #04',
+      value: 212.78,
+      date: DateTime.now().subtract(const Duration(days: 4)),
     ),
   ];
 
@@ -151,14 +167,30 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            SizedBox(
-              height: availableHeight * 0.30,
-              child: Chart(_recentTransactions),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const Text('Exibir gráfico'),
+                Switch(
+                  value: _showChart,
+                  onChanged: (value) {
+                    setState(() {
+                      _showChart = value;
+                    });
+                  },
+                ),
+              ],
             ),
-            SizedBox(
-              height: availableHeight * 0.70,
-              child: TransactionList(_transactions, _removeTransaction),
-            ),
+            if (_showChart)
+              SizedBox(
+                height: availableHeight * 0.30,
+                child: Chart(_recentTransactions),
+              ),
+            if (!_showChart)
+              SizedBox(
+                height: availableHeight * 0.70,
+                child: TransactionList(_transactions, _removeTransaction),
+              ),
           ],
         ),
       ),
