@@ -49,6 +49,8 @@ class _TransactionFormState extends State<TransactionForm> {
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             TextField(
               controller:
