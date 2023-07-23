@@ -163,10 +163,14 @@ class _MyHomePageState extends State<MyHomePage> {
     final mediaQuery = MediaQuery.of(context);
     bool isLandScape = mediaQuery.orientation == Orientation.landscape;
 
+    final iconList = Platform.isIOS ? CupertinoIcons.refresh : Icons.list;
+    final chartList =
+        Platform.isIOS ? CupertinoIcons.refresh : Icons.show_chart;
+
     final actions = [
       if (isLandScape)
         _getIconButton(
-          _showChart ? Icons.list : Icons.show_chart,
+          _showChart ? iconList : chartList,
           () {
             setState(() {
               _showChart = !_showChart;
@@ -188,38 +192,40 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar.preferredSize.height -
         mediaQuery.padding.top;
 
-    final boryPage = SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          //Removendo o Swith, pois foi adicionado um botão no appBar
-          //if (isLandScape)
-          //  Row(
-          //    mainAxisAlignment: MainAxisAlignment.center,
-          //    children: <Widget>[
-          //      const Text('Exibir gráfico'),
-          //      Switch.adaptive(
-          //        activeColor: Theme.of(context).colorScheme.secondary,
-          //        value: _showChart,
-          //        onChanged: (value) {
-          //          setState(() {
-          //            _showChart = value;
-          //          });
-          //        },
-          //      ),
-          //    ],
-          //  ),
-          if (_showChart || !isLandScape)
-            SizedBox(
-              height: availableHeight * (isLandScape ? 0.70 : 0.30),
-              child: Chart(_recentTransactions),
-            ),
-          if (!_showChart || !isLandScape)
-            SizedBox(
-              height: availableHeight * (isLandScape ? 0.90 : 0.7),
-              child: TransactionList(_transactions, _removeTransaction),
-            ),
-        ],
+    final boryPage = SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            //Removendo o Swith, pois foi adicionado um botão no appBar
+            //if (isLandScape)
+            //  Row(
+            //    mainAxisAlignment: MainAxisAlignment.center,
+            //    children: <Widget>[
+            //      const Text('Exibir gráfico'),
+            //      Switch.adaptive(
+            //        activeColor: Theme.of(context).colorScheme.secondary,
+            //        value: _showChart,
+            //        onChanged: (value) {
+            //          setState(() {
+            //            _showChart = value;
+            //          });
+            //        },
+            //      ),
+            //    ],
+            //  ),
+            if (_showChart || !isLandScape)
+              SizedBox(
+                height: availableHeight * (isLandScape ? 0.70 : 0.30),
+                child: Chart(_recentTransactions),
+              ),
+            if (!_showChart || !isLandScape)
+              SizedBox(
+                height: availableHeight * (isLandScape ? 0.90 : 0.7),
+                child: TransactionList(_transactions, _removeTransaction),
+              ),
+          ],
+        ),
       ),
     );
 
