@@ -1,3 +1,4 @@
+import 'package:despesas_pessoais/components/adaptative_button.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -119,14 +120,9 @@ class _TransactionFormState extends State<TransactionForm> {
               children: [
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                  child: ElevatedButton(
-                    onPressed: _submitForm,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).colorScheme.primary,
-                      foregroundColor:
-                          Theme.of(context).textTheme.labelLarge?.color,
-                    ),
-                    child: const Text('Nova transação'),
+                  child: AdaptativeButton(
+                    'Nova Transação',
+                    _submitForm,
                   ),
                 ),
               ],
