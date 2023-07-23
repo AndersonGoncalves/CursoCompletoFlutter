@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math';
 import 'package:despesas_pessoais/components/chart.dart';
 import 'package:flutter/material.dart';
@@ -189,8 +190,9 @@ class _MyHomePageState extends State<MyHomePage> {
             //    mainAxisAlignment: MainAxisAlignment.center,
             //    children: <Widget>[
             //      const Text('Exibir gráfico'),
-            //      Switch(
-            //       value: _showChart,
+            //      Switch.adaptive(
+            //        activeColor: Theme.of(context).colorScheme.secondary,
+            //        value: _showChart,
             //        onChanged: (value) {
             //          setState(() {
             //            _showChart = value;
@@ -212,10 +214,12 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () => _openTransactionFormModal(context),
-      ),
+      floatingActionButton: Platform.isIOS
+          ? const SizedBox()
+          : FloatingActionButton(
+              child: const Icon(Icons.add),
+              onPressed: () => _openTransactionFormModal(context),
+            ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
