@@ -45,89 +45,91 @@ class _TransactionFormState extends State<TransactionForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            TextField(
-              controller:
-                  _titleController, //onChanged: (newTitle) => _titleController.text = newTitle,
-              onSubmitted: (_) => _submitForm(),
-              decoration: const InputDecoration(
-                labelText: 'Título',
-                //enabledBorder: UnderlineInputBorder(
-                //  borderSide: BorderSide(
-                //    color: Colors.grey,
-                //  ),
-                //),
-                //focusedBorder: UnderlineInputBorder(
-                //  borderSide: BorderSide(
-                //    color: Colors.blue,
-                //  ),
-                //),
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 5,
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              TextField(
+                controller:
+                    _titleController, //onChanged: (newTitle) => _titleController.text = newTitle,
+                onSubmitted: (_) => _submitForm(),
+                decoration: const InputDecoration(
+                  labelText: 'Título',
+                  //enabledBorder: UnderlineInputBorder(
+                  //  borderSide: BorderSide(
+                  //    color: Colors.grey,
+                  //  ),
+                  //),
+                  //focusedBorder: UnderlineInputBorder(
+                  //  borderSide: BorderSide(
+                  //    color: Colors.blue,
+                  //  ),
+                  //),
+                ),
               ),
-            ),
-            TextField(
-              controller:
-                  _valueController, //onChanged: (newValue) => _valueController.text = newValue,
-              keyboardType:
-                  const TextInputType.numberWithOptions(decimal: true),
-              onSubmitted: (_) => _submitForm(),
-              decoration: const InputDecoration(
-                labelText: 'Valor (R\$)',
-                //enabledBorder: UnderlineInputBorder(
-                //  borderSide: BorderSide(
-                //    color: Colors.grey,
-                //  ),
-                //),
-                //focusedBorder: UnderlineInputBorder(
-                //  borderSide: BorderSide(
-                //    color: Colors.blue,
-                //  ),
-                //),
+              TextField(
+                controller:
+                    _valueController, //onChanged: (newValue) => _valueController.text = newValue,
+                keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
+                onSubmitted: (_) => _submitForm(),
+                decoration: const InputDecoration(
+                  labelText: 'Valor (R\$)',
+                  //enabledBorder: UnderlineInputBorder(
+                  //  borderSide: BorderSide(
+                  //    color: Colors.grey,
+                  //  ),
+                  //),
+                  //focusedBorder: UnderlineInputBorder(
+                  //  borderSide: BorderSide(
+                  //    color: Colors.blue,
+                  //  ),
+                  //),
+                ),
               ),
-            ),
-            SizedBox(
-              height: 70,
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Text(
-                      _selectedDate == null
-                          ? 'Nenhuma data selecionada!'
-                          : 'Data Selecionada: ${DateFormat('dd/MM/y').format(_selectedDate!)}',
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: _showDatePicker,
-                    child: const Text(
-                      'Selecionar Data',
-                      //style: Theme.of(context).textTheme.titleLarge,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
+              SizedBox(
+                height: 70,
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Text(
+                        _selectedDate == null
+                            ? 'Nenhuma data selecionada!'
+                            : 'Data Selecionada: ${DateFormat('dd/MM/y').format(_selectedDate!)}',
                       ),
+                    ),
+                    TextButton(
+                      onPressed: _showDatePicker,
+                      child: const Text(
+                        'Selecionar Data',
+                        //style: Theme.of(context).textTheme.titleLarge,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                    child: AdaptativeButton(
+                      'Nova Transação',
+                      _submitForm,
                     ),
                   ),
                 ],
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                  child: AdaptativeButton(
-                    'Nova Transação',
-                    _submitForm,
-                  ),
-                ),
-              ],
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );
