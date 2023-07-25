@@ -1,4 +1,5 @@
 import 'package:despesas_pessoais/components/adaptative_button.dart';
+import 'package:despesas_pessoais/components/adaptative_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -54,43 +55,18 @@ class _TransactionFormState extends State<TransactionForm> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              TextField(
+              AdaptaviveTextField(
+                label: 'Título',
                 controller:
                     _titleController, //onChanged: (newTitle) => _titleController.text = newTitle,
                 onSubmitted: (_) => _submitForm(),
-                decoration: const InputDecoration(
-                  labelText: 'Título',
-                  //enabledBorder: UnderlineInputBorder(
-                  //  borderSide: BorderSide(
-                  //    color: Colors.grey,
-                  //  ),
-                  //),
-                  //focusedBorder: UnderlineInputBorder(
-                  //  borderSide: BorderSide(
-                  //    color: Colors.blue,
-                  //  ),
-                  //),
-                ),
               ),
-              TextField(
-                controller:
-                    _valueController, //onChanged: (newValue) => _valueController.text = newValue,
+              AdaptaviveTextField(
+                label: 'Valor (R\$)',
+                controller: _valueController,
                 keyboardType:
                     const TextInputType.numberWithOptions(decimal: true),
                 onSubmitted: (_) => _submitForm(),
-                decoration: const InputDecoration(
-                  labelText: 'Valor (R\$)',
-                  //enabledBorder: UnderlineInputBorder(
-                  //  borderSide: BorderSide(
-                  //    color: Colors.grey,
-                  //  ),
-                  //),
-                  //focusedBorder: UnderlineInputBorder(
-                  //  borderSide: BorderSide(
-                  //    color: Colors.blue,
-                  //  ),
-                  //),
-                ),
               ),
               SizedBox(
                 height: 70,
