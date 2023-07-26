@@ -7,16 +7,52 @@ import 'package:intl/intl.dart';
 class TransactionForm extends StatefulWidget {
   final void Function(String, double, DateTime) onSubmit;
 
-  const TransactionForm(this.onSubmit, {super.key});
+  TransactionForm(this.onSubmit, {super.key}) {
+    print('Constructor TransactionForm');
+  }
 
   @override
-  State<TransactionForm> createState() => _TransactionFormState();
+  State<TransactionForm> createState() {
+    print('createState() TransactionForm');
+    return _TransactionFormState();
+  }
 }
 
 class _TransactionFormState extends State<TransactionForm> {
   final _titleController = TextEditingController();
   final _valueController = TextEditingController();
   DateTime? _selectedDate = DateTime.now();
+
+  _TransactionFormState() {
+    print('_TransactionFormState() TransactionForm');
+  }
+
+  @override
+
+  ///Chamado uma vez para o componente
+  ///Usado com maior frequencia, sempre que precisar carregar
+  ///alguma coisa no estado do componente
+  void initState() {
+    super.initState();
+    print('initState() _TransactionFormState');
+  }
+
+  @override
+
+  ///Serve para comparar o Widget antigo e o novo
+  void didUpdateWidget(TransactionForm oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    //widget //Acesso ao componente novo (Widget atual)
+    //oldWidget //Componente antigo (pega um atributo antes de criar a arvode de elementos nova)
+    print('didUpdateWidget() _TransactionFormState');
+  }
+
+  @override
+  //Chamado quando fecha o formulario
+  void dispose() {
+    super.dispose();
+    print('dispose() _TransactionFormState');
+  }
 
   _submitForm() {
     final title = _titleController.text;
@@ -31,6 +67,7 @@ class _TransactionFormState extends State<TransactionForm> {
 
   @override
   Widget build(BuildContext context) {
+    print('build() _TransactionFormState');
     return SingleChildScrollView(
       child: Card(
         elevation: 5,
