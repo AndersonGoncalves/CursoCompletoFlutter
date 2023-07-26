@@ -42,8 +42,8 @@ class TransactionList extends StatelessWidget {
             itemBuilder: (ctx, index) {
               final tr = transactions[index];
               return TransactionItem(
-                key: GlobalObjectKey(
-                    tr), //ValueKey(tr.id), //Não funciona com ListView.builder
+                //key: ValueKey(tr.id), //Não funciona com ListView.builder, GlobalObjectKey não é recomendado mas é a unica saída para esse caso, pois provavelmente é um Bug do Flutter usar o ValueKey com ListView.builder
+                key: GlobalObjectKey(tr),
                 tr: tr,
                 onRemove: onRemove,
               );

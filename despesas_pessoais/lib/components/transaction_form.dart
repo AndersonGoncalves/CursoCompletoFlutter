@@ -2,7 +2,6 @@ import 'package:despesas_pessoais/components/adaptative_button.dart';
 import 'package:despesas_pessoais/components/adaptative_date_picker.dart';
 import 'package:despesas_pessoais/components/adaptative_text_field.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class TransactionForm extends StatefulWidget {
   final void Function(String, double, DateTime) onSubmit;
@@ -27,19 +26,17 @@ class _TransactionFormState extends State<TransactionForm> {
     print('_TransactionFormState() TransactionForm');
   }
 
-  @override
-
   ///Chamado uma vez para o componente
   ///Usado com maior frequencia, sempre que precisar carregar
   ///alguma coisa no estado do componente
+  @override
   void initState() {
     super.initState();
     print('initState() _TransactionFormState');
   }
 
-  @override
-
   ///Serve para comparar o Widget antigo e o novo
+  @override
   void didUpdateWidget(TransactionForm oldWidget) {
     super.didUpdateWidget(oldWidget);
     //widget //Acesso ao componente novo (Widget atual)
@@ -47,8 +44,8 @@ class _TransactionFormState extends State<TransactionForm> {
     print('didUpdateWidget() _TransactionFormState');
   }
 
-  @override
   //Chamado quando fecha o formulario
+  @override
   void dispose() {
     super.dispose();
     print('dispose() _TransactionFormState');
@@ -90,7 +87,6 @@ class _TransactionFormState extends State<TransactionForm> {
                     const TextInputType.numberWithOptions(decimal: true),
                 onSubmitted: (_) => _submitForm(),
               ),
-              //novo componente
               AdaptativeDatePicker(
                 selectedDate: _selectedDate,
                 onDateChanged: (newDate) {
@@ -101,7 +97,7 @@ class _TransactionFormState extends State<TransactionForm> {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
-                children: [
+                children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                     child: AdaptativeButton(
