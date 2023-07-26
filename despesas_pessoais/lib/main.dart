@@ -62,7 +62,7 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   bool _showChart = false;
   final List<Transaction> _transactions = [
     Transaction(
@@ -108,6 +108,24 @@ class _MyHomePageState extends State<MyHomePage> {
       date: DateTime.now().subtract(const Duration(days: 4)),
     ),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  //Sempre será chamado quando houver alteração no método de ciclo de vida
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    print('State: $state');
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+  }
 
   List<Transaction> get _recentTransactions {
     return _transactions.where((tr) {
