@@ -42,63 +42,22 @@ class TransactionList extends StatelessWidget {
             itemBuilder: (ctx, index) {
               final tr = transactions[index];
               return TransactionItem(
+                key: GlobalObjectKey(
+                    tr), //ValueKey(tr.id), //Não funciona com ListView.builder
                 tr: tr,
                 onRemove: onRemove,
               );
-              /*Trocado pelo Widget ListTile
-              Card(
-                child: Row(
-                  children: <Widget>[
-                    Container(
-                      margin: const EdgeInsets.symmetric(
-                        horizontal: 15,
-                        vertical: 10,
-                      ),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Theme.of(context)
-                              .colorScheme
-                              .primary, //ou Theme.of(context).primaryColor,
-                          width: 2,
-                        ),
-                      ),
-                      padding: const EdgeInsets.all(10),
-                      child: Text(
-                        'R\$ ${tr.value.toStringAsFixed(2)}',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: Theme.of(context)
-                              .colorScheme
-                              .primary, //ou Theme.of(context).primaryColor,
-                        ),
-                      ),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          tr.title,
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleLarge, //Pegar o thema do textTheme, headline6 foi deprecado, usar titleLarge
-                          //style: const TextStyle(
-                          //  fontSize: 16,
-                          //  fontWeight: FontWeight.bold,
-                          //),
-                        ),
-                        Text(
-                          DateFormat('dd MMM y').format(tr.date),
-                          style: const TextStyle(
-                            color: Colors.grey,
-                          ),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              );*/
             },
           );
+    //Sem usar o ListView.builder (recomendado somente se a lista for pequena)
+    //ListView(
+    //    children: transactions.map((tr) {
+    //      return TransactionItem(
+    //        key: ValueKey(tr.id),
+    //        tr: tr,
+    //        onRemove: onRemove,
+    //      );
+    //    }).toList(),
+    //  );
   }
 }
