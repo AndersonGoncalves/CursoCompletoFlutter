@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'screens/categories_screen.dart';
+import 'screens/categories_meals_screen.dart';
+import 'utils/app_routes.dart';
 
 void main() => runApp(const MyApp());
 
@@ -9,24 +11,28 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Vamos Cozinhar?',
-      //Inicio - Difinindo o thema da aplicação //ou theme: ThemeData(primarySwatch: Colors.purple),
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch().copyWith(
-          primary: Colors.pink,
-          secondary: Colors.amber,
-        ),
-        canvasColor: const Color.fromRGBO(255, 254, 229, 1),
-        fontFamily: 'Raleway',
-        textTheme: ThemeData.light().textTheme.copyWith(
-              titleLarge: const TextStyle(
-                fontSize: 20,
-                fontFamily: 'RobotoCondensed',
+        title: 'Vamos Cozinhar?',
+        //Inicio - Difinindo o thema da aplicação //ou theme: ThemeData(primarySwatch: Colors.purple),
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSwatch().copyWith(
+            primary: Colors.pink,
+            secondary: Colors.amber,
+          ),
+          canvasColor: const Color.fromRGBO(255, 254, 229, 1),
+          fontFamily: 'Raleway',
+          textTheme: ThemeData.light().textTheme.copyWith(
+                titleLarge: const TextStyle(
+                  fontSize: 20,
+                  fontFamily: 'RobotoCondensed',
+                ),
               ),
-            ),
-      ),
-      //Fim - Difinindo o thema da aplicação
-      home: const CategoriesScreen(),
-    );
+        ),
+        //Fim - Difinindo o thema da aplicação
+        //home: const CategoriesScreen(), //Não precisa pois foi adicionado o home na rota
+        //initialRoute: '/',
+        routes: {
+          AppRoutes.home: (ctx) => const CategoriesScreen(),
+          AppRoutes.categoriesMeals: (ctx) => const CategoriesMealsScreen(),
+        });
   }
 }
