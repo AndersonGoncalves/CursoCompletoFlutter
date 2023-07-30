@@ -12,29 +12,50 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Vamos Cozinhar?',
-        //Inicio - Difinindo o thema da aplicação //ou theme: ThemeData(primarySwatch: Colors.purple),
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSwatch().copyWith(
-            primary: Colors.pink,
-            secondary: Colors.amber,
-          ),
-          canvasColor: const Color.fromRGBO(255, 254, 229, 1),
-          fontFamily: 'Raleway',
-          textTheme: ThemeData.light().textTheme.copyWith(
-                titleLarge: const TextStyle(
-                  fontSize: 20,
-                  fontFamily: 'RobotoCondensed',
-                ),
-              ),
+      title: 'Vamos Cozinhar?',
+      //Inicio - Difinindo o thema da aplicação //ou theme: ThemeData(primarySwatch: Colors.purple),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+          primary: Colors.pink,
+          secondary: Colors.amber,
         ),
-        //Fim - Difinindo o thema da aplicação
-        //home: const CategoriesScreen(), //Não precisa pois foi adicionado o home na rota
-        //initialRoute: '/',
-        routes: {
-          AppRoutes.home: (ctx) => const CategoriesScreen(),
-          AppRoutes.categoriesMeals: (ctx) => const CategoriesMealsScreen(),
-          AppRoutes.mealDetail: (ctx) => const MealDetailScreen(),
-        });
+        canvasColor: const Color.fromRGBO(255, 254, 229, 1),
+        fontFamily: 'Raleway',
+        textTheme: ThemeData.light().textTheme.copyWith(
+              titleLarge: const TextStyle(
+                fontSize: 20,
+                fontFamily: 'RobotoCondensed',
+              ),
+            ),
+      ),
+      //Fim - Difinindo o thema da aplicação
+      //home: const CategoriesScreen(), //Não precisa pois foi adicionado o home na rota
+      //initialRoute: '/',
+      routes: {
+        AppRoutes.home: (ctx) => const CategoriesScreen(),
+        AppRoutes.categoriesMeals: (ctx) => const CategoriesMealsScreen(),
+        //AppRoutes.mealDetail: (ctx) => const MealDetailScreen(),
+      },
+      /*
+      onGenerateRoute: (settings) {
+        if (settings == '/alguma-coiisa') {
+          return null;
+        } else if (settings == '/outra-coisa') {
+          return null;
+        } else {
+          return MaterialPageRoute(builder: (_) {
+            return const CategoriesScreen();
+          });
+        }
+      },
+      */
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(
+          builder: (_) {
+            return const CategoriesScreen(); //pode criar uma pagina de erro
+          },
+        );
+      },
+    );
   }
 }
