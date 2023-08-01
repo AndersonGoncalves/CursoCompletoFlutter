@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:refeicoes/components/settings_screen.dart';
+import 'package:refeicoes/screens/settings_screen.dart';
 import 'package:refeicoes/screens/meal_detail_screen.dart';
 import 'package:refeicoes/screens/tabs_screen.dart';
 import 'screens/categories_screen.dart';
