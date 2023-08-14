@@ -71,6 +71,7 @@ class _MyAppState extends State<MyApp> {
               ),
             ),
       ),
+      debugShowCheckedModeBanner: false,
       //Fim - Difinindo o thema da aplicação
       //home: const CategoriesScreen(), //Não precisa pois foi adicionado o home na rota
       //initialRoute: '/',
