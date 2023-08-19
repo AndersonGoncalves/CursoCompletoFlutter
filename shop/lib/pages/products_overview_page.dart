@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:shop/components/product_grid.dart';
-import 'package:shop/providers/product_list.dart';
 
 enum FilterOptions {
   favorite,
@@ -10,7 +8,6 @@ enum FilterOptions {
 
 class ProductsOverviewPage extends StatefulWidget {
   const ProductsOverviewPage({super.key});
-
   @override
   State<ProductsOverviewPage> createState() => _ProductsOverviewPageState();
 }
