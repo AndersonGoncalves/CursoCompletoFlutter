@@ -5,8 +5,26 @@ import 'package:shop/models/product.dart';
 
 class ProductList with ChangeNotifier {
   final List<Product> _items = dummyProducts;
-  List<Product> get items => [..._items];
+
+  bool _showFavoriteOnly = false;
+
+  List<Product> get items {
+    if (_showFavoriteOnly) {
+      return _items.where((prod) => prod.isFavorite).toList();
+    }
+    return [..._items];
+  }
   //[..._items] Retornando um clone dos itens evitando que adicionem itens atraves do get
+
+  void showFavoriteOnly() {
+    _showFavoriteOnly = true;
+    notifyListeners(); //Notificando aos interessados que ouve uma mudança na lista
+  }
+
+  void showAll() {
+    _showFavoriteOnly = false;
+    notifyListeners(); //Notificando aos interessados que ouve uma mudança na lista
+  }
 
   void addProduct(Product product) {
     _items.add(product);
