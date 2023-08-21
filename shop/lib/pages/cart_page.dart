@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shop/components/cart_item.dart';
 import 'package:shop/models/cart.dart';
 
 class CartPage extends StatelessWidget {
@@ -8,6 +9,7 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Cart cart = Provider.of(context);
+    final items = cart.items.values.toList();
 
     return Scaffold(
       appBar: AppBar(
@@ -42,9 +44,15 @@ class CartPage extends StatelessWidget {
                   TextButton(
                     onPressed: () {},
                     child: const Text('COMPRAR'),
-                  )
+                  ),
                 ],
               ),
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: items.length,
+              itemBuilder: (ctx, i) => CartItemWidget(items[i]),
             ),
           ),
         ],
