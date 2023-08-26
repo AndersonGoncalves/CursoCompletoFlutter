@@ -11,7 +11,8 @@ class AppDrawer extends StatelessWidget {
         children: [
           AppBar(
             title: const Text('Bem vindo usuário!'),
-            automaticallyImplyLeading: false,
+            automaticallyImplyLeading:
+                false, //Para ocultar o icone quando acionar o menu
           ),
           const Divider(),
           ListTile(
