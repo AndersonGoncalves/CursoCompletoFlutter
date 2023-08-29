@@ -11,6 +11,10 @@ class ProductList with ChangeNotifier {
       _items.where((prod) => prod.isFavorite).toList();
   //[..._items] Retornando um clone dos itens evitando que adicionem itens atraves do get
 
+  int get itemsCount {
+    return _items.length;
+  }
+
   void addProduct(Product product) {
     _items.add(product);
     notifyListeners(); //Notificando aos interessados que ouve uma mudança na lista
