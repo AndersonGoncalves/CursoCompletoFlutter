@@ -94,12 +94,24 @@ class ProductList with ChangeNotifier {
     }
   }
 
-  void removeProduct(Product product) {
+  Future<void> removeProduct(Product product) async {
     int index = _items.indexWhere((p) => p.id == product.id);
     if (index >= 0) {
-      _items.removeWhere((p) => p.id == product.id);
+      final product = _items[index];
+      _items.remove(product);
+      notifyListeners(); //Notificando aos interessados que ouve uma mudança na lista
+
+      final response = await http.delete(
+        Uri.parse('$_baseUrl/${product.id}.jso'),
+      );
+
+      //erro da familia dos 400 é do lado do cliente
+      //erro da familia dos 500 é do lado do servidor
+      if (response.statusCode >= 400) {
+        _items.insert(index, product);
+        notifyListeners(); //Notificando aos interessados que ouve uma mudança na lista
+      }
     }
-    notifyListeners(); //Notificando aos interessados que ouve uma mudança na lista
   }
 }
 
