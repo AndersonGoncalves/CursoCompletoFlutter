@@ -97,6 +97,7 @@ class ProductList with ChangeNotifier {
 
   Future<void> removeProduct(Product product) async {
     int index = _items.indexWhere((p) => p.id == product.id);
+
     if (index >= 0) {
       final product = _items[index];
       _items.remove(product);

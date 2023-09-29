@@ -89,7 +89,7 @@ class ProductItem extends StatelessWidget {
                         context,
                         listen: false,
                       ).removeProduct(product);
-                    } on HttpException catch (error) {
+                    } catch (error) {
                       msg.showSnackBar(
                         SnackBar(
                           content: Text(error.toString()),
