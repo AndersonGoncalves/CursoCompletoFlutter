@@ -9,6 +9,7 @@ import 'package:shop/utils/constants.dart';
 
 class ProductList with ChangeNotifier {
   String token;
+  String userId;
   List<Product> _items = [];
 
   List<Product> get items => [..._items];
@@ -16,7 +17,11 @@ class ProductList with ChangeNotifier {
       _items.where((prod) => prod.isFavorite).toList();
   //[..._items] Retornando um clone dos itens evitando que adicionem itens atraves do get
 
-  ProductList(this.token, this._items);
+  ProductList([
+    this.token = '',
+    this.userId = '',
+    this._items = const [],
+  ]);
 
   int get itemsCount {
     return _items.length;
@@ -28,14 +33,27 @@ class ProductList with ChangeNotifier {
       Uri.parse('${Constants.productBaseUrl}.json?auth=$token'),
     );
     if (response.body == 'null') return;
+
+    final favResponse = await http.get(
+      Uri.parse(
+        '${Constants.userFavoritesUrl}/$userId.json?auth=$token',
+      ),
+    );
+
+    Map<String, dynamic> favData =
+        favResponse.body == 'null' ? {} : jsonDecode(favResponse.body);
+
     Map<String, dynamic> data = jsonDecode(response.body);
     data.forEach((productId, productData) {
+      final isFavorite = favData[productId] ?? false;
+
       _items.add(Product(
         id: productId,
         name: productData['name'],
         description: productData['description'],
         price: productData['price'],
         imageUrl: productData['imageUrl'],
+        isFavorite: isFavorite,
       ));
     });
     notifyListeners(); //Notificando aos interessados que ouve uma mudança na lista
