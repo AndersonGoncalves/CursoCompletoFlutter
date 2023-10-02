@@ -126,14 +126,13 @@ import 'package:provider/provider.dart';
 import 'package:shop/models/auth.dart';
 import 'package:shop/models/cart.dart';
 import 'package:shop/models/order_list.dart';
-import 'package:shop/pages/auth_page.dart';
+import 'package:shop/pages/auth_or_home_page.dart';
 import 'package:shop/pages/cart_page.dart';
 import 'package:shop/pages/orders_page.dart';
 import 'package:shop/pages/product_form_page.dart';
 import 'package:shop/pages/products_page.dart';
 import 'package:shop/providers/product_list.dart';
 import 'package:shop/pages/product_detail_page.dart';
-import 'package:shop/pages/products_overview_page.dart';
 import 'package:shop/utils/app_routes.dart';
 
 void main() {
@@ -172,8 +171,7 @@ class MyApp extends StatelessWidget {
         //home: const ProductsOverviewPage(),
         debugShowCheckedModeBanner: false,
         routes: {
-          AppRoutes.auth: (_) => const AuthPage(),
-          AppRoutes.home: (_) => const ProductsOverviewPage(),
+          AppRoutes.authOrHome: (_) => const AuthOrHomePage(),
           AppRoutes.productDetail: (_) => const ProductDetailPage(),
           AppRoutes.cart: (_) => const CartPage(),
           AppRoutes.orders: (_) => const OrdersPage(),
