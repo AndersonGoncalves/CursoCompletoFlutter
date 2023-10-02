@@ -8,12 +8,15 @@ import 'package:shop/models/product.dart';
 import 'package:shop/utils/constants.dart';
 
 class ProductList with ChangeNotifier {
-  final List<Product> _items = [];
+  String token;
+  List<Product> _items = [];
 
   List<Product> get items => [..._items];
   List<Product> get favoriteItems =>
       _items.where((prod) => prod.isFavorite).toList();
   //[..._items] Retornando um clone dos itens evitando que adicionem itens atraves do get
+
+  ProductList(this.token, this._items);
 
   int get itemsCount {
     return _items.length;
@@ -22,7 +25,7 @@ class ProductList with ChangeNotifier {
   Future<void> loadProducts() async {
     _items.clear();
     final response = await http.get(
-      Uri.parse('${Constants.productBaseUrl}.json'),
+      Uri.parse('${Constants.productBaseUrl}.json?auth=$token'),
     );
     if (response.body == 'null') return;
     Map<String, dynamic> data = jsonDecode(response.body);
