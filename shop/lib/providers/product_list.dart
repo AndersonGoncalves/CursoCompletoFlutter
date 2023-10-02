@@ -36,7 +36,6 @@ class ProductList with ChangeNotifier {
         description: productData['description'],
         price: productData['price'],
         imageUrl: productData['imageUrl'],
-        isFavorite: productData['isFavorite'],
       ));
     });
     notifyListeners(); //Notificando aos interessados que ouve uma mudança na lista
@@ -68,7 +67,6 @@ class ProductList with ChangeNotifier {
           "description": product.description,
           "price": product.price,
           "imageUrl": product.imageUrl,
-          "isFavorite": product.isFavorite,
         }));
 
     final id = jsonDecode(response.body)['name'];
