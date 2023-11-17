@@ -18,9 +18,9 @@ class PlacesListScreen extends StatelessWidget {
           )
         ],
       ),
-      body: const Center(
+      body: Center(
         child: CircularProgressIndicator(
-          color: Colors.amber,
+          color: Theme.of(context).colorScheme.secondary,
         ),
       ),
     );
