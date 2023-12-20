@@ -1,16 +1,14 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:great_places/providers/great_places.dart';
+import 'package:great_places/provider/great_places.dart';
 import 'package:great_places/widgets/image_input.dart';
 import 'package:great_places/widgets/location_input.dart';
 import 'package:provider/provider.dart';
 
 class PlaceFormScreen extends StatefulWidget {
-  const PlaceFormScreen({Key? key}) : super(key: key);
-
   @override
-  State<PlaceFormScreen> createState() => _PlaceFormScreenState();
+  _PlaceFormScreenState createState() => _PlaceFormScreenState();
 }
 
 class _PlaceFormScreenState extends State<PlaceFormScreen> {
@@ -38,9 +36,10 @@ class _PlaceFormScreenState extends State<PlaceFormScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Novo Lugar'),
+        title: Text('Novo Lugar'),
       ),
       body: Column(
+        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
@@ -51,25 +50,25 @@ class _PlaceFormScreenState extends State<PlaceFormScreen> {
                   children: [
                     TextField(
                       controller: _titleController,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         labelText: 'Título',
                       ),
                     ),
-                    const SizedBox(height: 10),
-                    ImageInput(_selectImage),
-                    const SizedBox(height: 10),
-                    const LocationInput(),
+                    SizedBox(height: 10),
+                    ImageInput(this._selectImage),
+                    SizedBox(height: 10),
+                    LocationInput(),
                   ],
                 ),
               ),
             ),
           ),
           ElevatedButton.icon(
-            icon: const Icon(Icons.add),
-            label: const Text('Adicionar'),
+            icon: Icon(Icons.add),
+            label: Text('Adicionar'),
             style: ElevatedButton.styleFrom(
-              primary: Theme.of(context).colorScheme.secondary,
-              onPrimary: Colors.black,
+              // primary: Theme.of(context).accentColor,
+              // onPrimary: Colors.black,
               elevation: 0,
               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
             ),
