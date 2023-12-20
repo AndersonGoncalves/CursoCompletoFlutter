@@ -20,8 +20,10 @@ class _ImageInputState extends State<ImageInput> {
   _takePicture() async {
     final ImagePicker picker = ImagePicker();
     XFile imageFile = await picker.pickImage(
-      source: ImageSource.camera,
-      maxWidth: 600,
+      source: Theme.of(context).platform == TargetPlatform.windows
+          ? ImageSource.gallery
+          : ImageSource.camera,
+      maxWidth: 1800,
     ) as XFile;
 
     setState(() {
