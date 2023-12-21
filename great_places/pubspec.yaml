@@ -38,8 +38,8 @@ dependencies:
     git:
       url: https://github.com/781flyingdutchman/flutterlocation.git
       ref: 'V4'
-      path: packages/location
-  google_maps_flutter: ^2.1.8
+      path: packages/location  
+  google_maps_flutter: ^2.5.0
   http: ^0.13.4
 
   # The following adds the Cupertino Icons font to your application.
