@@ -8,18 +8,18 @@ import 'package:path_provider/path_provider.dart' as syspaths;
 class ImageInput extends StatefulWidget {
   final Function onSelectImage;
 
-  ImageInput(this.onSelectImage);
+  const ImageInput(this.onSelectImage, {Key? key}) : super(key: key);
 
   @override
-  _ImageInputState createState() => _ImageInputState();
+  State<ImageInput> createState() => _ImageInputState();
 }
 
 class _ImageInputState extends State<ImageInput> {
   File? _storedImage;
 
   _takePicture() async {
-    final ImagePicker _picker = ImagePicker();
-    XFile imageFile = await _picker.pickImage(
+    final ImagePicker picker = ImagePicker();
+    XFile imageFile = await picker.pickImage(
       source: ImageSource.camera,
       maxWidth: 600,
     ) as XFile;
@@ -53,13 +53,13 @@ class _ImageInputState extends State<ImageInput> {
                   width: double.infinity,
                   fit: BoxFit.cover,
                 )
-              : Text('Nenhuma imagem!'),
+              : const Text('Nenhuma imagem!'),
         ),
-        SizedBox(width: 10),
+        const SizedBox(width: 10),
         Expanded(
           child: TextButton.icon(
-            icon: Icon(Icons.camera),
-            label: Text('Tirar foto'),
+            icon: const Icon(Icons.camera),
+            label: const Text('Tirar Foto'),
             onPressed: _takePicture,
           ),
         ),

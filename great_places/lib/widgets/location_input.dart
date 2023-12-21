@@ -3,8 +3,10 @@ import 'package:great_places/utils/location_util.dart';
 import 'package:location/location.dart';
 
 class LocationInput extends StatefulWidget {
+  const LocationInput({Key? key}) : super(key: key);
+
   @override
-  _LocationInputState createState() => _LocationInputState();
+  State<LocationInput> createState() => _LocationInputState();
 }
 
 class _LocationInputState extends State<LocationInput> {
@@ -38,7 +40,7 @@ class _LocationInputState extends State<LocationInput> {
             ),
           ),
           child: _previewImageUrl == null
-              ? Text('Localização não informada!')
+              ? const Text('Localização não informada!')
               : Image.network(
                   _previewImageUrl!,
                   fit: BoxFit.cover,
@@ -49,13 +51,13 @@ class _LocationInputState extends State<LocationInput> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextButton.icon(
-              icon: Icon(Icons.location_on),
-              label: Text('Localização atual'),
+              icon: const Icon(Icons.location_on),
+              label: const Text('Localização atual'),
               onPressed: _getCurrentUserLocation,
             ),
             TextButton.icon(
-              icon: Icon(Icons.map),
-              label: Text('Selecione no Mapa'),
+              icon: const Icon(Icons.map),
+              label: const Text('Selecione no Mapa'),
               onPressed: () {},
             ),
           ],
